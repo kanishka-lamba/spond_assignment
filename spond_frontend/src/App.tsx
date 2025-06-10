@@ -30,7 +30,7 @@ function App() {
   const handleNextFromStep1 = (selectedData: FormData) => {
     setFormData((prev) => ({
       ...prev,
-      member_type_name: selectedData.member_type_name,
+      member_type_id: selectedData.member_type_id,
       group: selectedData.group,
     }));
     setStep(2);

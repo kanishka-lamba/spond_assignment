@@ -1,4 +1,7 @@
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import type { FormData } from "../types";
+import { validationSchema } from "../validationSchema";
 
 interface Props {
   formData: FormData;
@@ -11,42 +14,53 @@ const UserDetailsForm: React.FC<Props> = ({
   setFormData,
   setStep,
 }) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    defaultValues: formData,
+    resolver: yupResolver(validationSchema),
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit = (data: FormData) => {
+    setFormData(data);
     setStep(3);
   };
 
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(onSubmit)}
       className="max-w-xl mx-auto bg-white p-6 rounded shadow space-y-4"
     >
       <h2 className="text-xl font-bold mb-4">Enter your details</h2>
 
-      {["name", "email", "phone", "birth_date"].map((field) => (
-        <input
-          key={field}
-          name={field}
-          type={
-            field === "birth_date"
-              ? "date"
-              : field === "email"
-              ? "email"
-              : "text"
-          }
-          placeholder={field
-            .replace("_", " ")
-            .replace(/\b\w/g, (c) => c.toUpperCase())}
-          value={formData[field as keyof FormData]}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-        />
-      ))}
+      {["name", "email", "phone", "birth_date"].map((field) => {
+        const type =
+          field === "birth_date"
+            ? "date"
+            : field === "email"
+            ? "email"
+            : "text";
+
+        return (
+          <div key={field}>
+            <input
+              {...register(field as keyof FormData)}
+              type={type}
+              placeholder={field
+                .replace("_", " ")
+                .replace(/\b\w/g, (c) => c.toUpperCase())}
+              className="w-full p-2 border rounded"
+            />
+            {errors[field as keyof FormData] && (
+              <p className="text-red-600 text-sm mt-1">
+                {errors[field as keyof FormData]?.message}
+              </p>
+            )}
+          </div>
+        );
+      })}
 
       <div className="flex justify-between pt-4">
         <button

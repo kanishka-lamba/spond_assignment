@@ -1,5 +1,5 @@
 export const defaultFormData = {
-  member_type_name: "",
+  member_type_id: "",
   group: "",
   name: "",
   email: "",

@@ -16,8 +16,8 @@ const ReviewAndSubmit: React.FC<Props> = ({ formData, formMeta, setStep }) => {
   const memberTypeName =
     formMeta
       .flatMap((meta) => meta.memberTypes)
-      .find((type) => type.id === formData.member_type_name)?.name ||
-    formData.member_type_name;
+      .find((type) => type.id === formData.member_type_id)?.name ||
+    formData.member_type_id;
 
   const groupName =
     groupOptions.find((g) => g.id === formData.group)?.name || formData.group;

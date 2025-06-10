@@ -34,7 +34,7 @@ const SelectMembershipInfo: React.FC<Props> = ({
     <>
       {formMeta.map(({ formId, title, memberTypes, registrationOpens }) => {
         const data = formDataMap[formId] || { ...defaultFormData };
-        const isNextDisabled = !data.member_type_name || !data.group;
+        const isNextDisabled = !data.member_type_id || !data.group;
         const registrationDate = new Date(registrationOpens);
         const now = new Date();
 
@@ -66,9 +66,9 @@ const SelectMembershipInfo: React.FC<Props> = ({
 
             <label className="block mb-2 font-medium">Member Type</label>
             <select
-              value={data.member_type_name}
+              value={data.member_type_id}
               onChange={(e) =>
-                handleChange(formId, "member_type_name", e.target.value)
+                handleChange(formId, "member_type_id", e.target.value)
               }
               className="w-full border p-2 rounded mb-4"
             >

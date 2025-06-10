@@ -13,7 +13,7 @@ export interface FormMeta {
 }
 
 export interface FormData {
-  member_type_name: string;
+  member_type_id: string;
   group: string;
   name: string;
   email: string;
