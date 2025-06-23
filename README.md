@@ -66,7 +66,7 @@ docker-compose up --build
 ```
 
 - FastAPI: [http://localhost:8000/docs](http://localhost:8000/docs)
-- Java backend: [http://localhost:8000/docs](http://localhost:8080)
+- Java backend: [http://localhost:8080](http://localhost:8080)
 - PostgreSQL: available at `localhost:5432` for fastapi and `localhost:5433` for Java
 
 ---
