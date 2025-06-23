@@ -26,7 +26,7 @@ const ReviewAndSubmit: React.FC<Props> = ({ formData, formMeta, setStep }) => {
     setIsSubmitting(true);
     setError(null);
     try {
-      const res = await fetch("http://localhost:8000/form/submit", {
+      const res = await fetch("http://localhost:8080/form/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -35,6 +35,7 @@ const ReviewAndSubmit: React.FC<Props> = ({ formData, formMeta, setStep }) => {
         throw new Error(`Server error: ${res.status}`);
       }
       const data = await res.json();
+      console.log(formData);
       setSuccess(true);
       console.log(data);
     } catch (err: any) {

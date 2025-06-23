@@ -16,7 +16,7 @@ function App() {
   useEffect(() => {
     const fetchFormMeta = async () => {
       try {
-        const res = await fetch("http://localhost:8000/form");
+        const res = await fetch("http://localhost:8080/form");
         const data = await res.json();
         setFormMeta(data);
       } catch (err) {

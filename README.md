@@ -3,7 +3,7 @@
 A full-stack web application to handle club member signups for events like sports camps. Built using:
 
 - **Frontend**: React + TypeScript + TailwindCSS + Vite
-- **Backend**: FastAPI + PostgreSQL
+- **Backend**: FastAPI + PostgreSQL and translated into Java Spring Boot + PostgreSQL
 - **Database**: PostgreSQL 14 (Dockerized)
 - **Development Tools**: Docker Compose, Pytest
 
@@ -59,14 +59,15 @@ npm run dev
 
 ## 🐳 Run Backend + DB with Docker
 
-Inside `spond_backend/`:
+Inside `spond_backend/` or `spond_backend_java/`:
 
 ```bash
 docker-compose up --build
 ```
 
 - FastAPI: [http://localhost:8000/docs](http://localhost:8000/docs)
-- PostgreSQL: available at `localhost:5432`
+- Java backend: [http://localhost:8000/docs](http://localhost:8080)
+- PostgreSQL: available at `localhost:5432` for fastapi and `localhost:5433` for Java
 
 ---
 
@@ -84,6 +85,7 @@ pytest
 ```
 spond_assignment/
 ├── spond_backend/      # FastAPI backend with DB & API logic
+├── spond_backend_java/   # Java Spring Boot backend
 ├── spond_frontend/     # React + Vite frontend
 ├── README.md
 ```
